@@ -27,6 +27,17 @@ export function SourceFooter() {
           ))}
         </ul>
 
+        <p className="mt-3">
+          <a
+            href="https://github.com/sixsalaxjer-tech/thai-stock-compass/actions/workflows/refresh-data.yml"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gold"
+          >
+            รีเฟรชราคาล่าสุดตอนนี้ (GitHub Actions, ต้องล็อกอิน GitHub ของเจ้าของเว็บ) →
+          </a>
+        </p>
+
         <p className="mt-4 leading-relaxed">
           เว็บไซต์นี้จัดทำขึ้นเพื่อเป็นข้อมูลประกอบการตัดสินใจเท่านั้น{" "}
           <strong className="text-text">ไม่ใช่คำแนะนำการลงทุน</strong>{" "}

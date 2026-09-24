@@ -5,14 +5,18 @@ import type {
   StockDetail,
   WatchStock,
 } from "./types";
+import marketData from "./marketData.json";
+import dividendData from "./dividendData.json";
 
 // ราคาปัจจุบันของหุ้นแต่ละตัวอ้างอิงราคาซื้อขายบน SET (ตลาดหลักทรัพย์แห่งประเทศไทย)
-// ผ่านข้อมูลตลาดของ Investing.com เนื่องจาก set.or.th ปิดกั้นการดึงข้อมูลอัตโนมัติ
+// ผ่าน Yahoo Finance (set.or.th ปิดกั้นการดึงข้อมูลอัตโนมัติ) — ราคาถูกรีเฟรชอัตโนมัติ
+// ทุกสัปดาห์ (หรือกดรันเองได้) ผ่าน scripts/refresh-market-data.mjs ดูปุ่มอัปเดตท้ายเว็บ
 // ราคาเป้าหมายอ้างอิงฉันทามติ (consensus) ของนักวิเคราะห์จากหน้า Settrade IAA Consensus
+// (อัปเดตด้วยมือเป็นระยะ เนื่องจากไม่มีแหล่งข้อมูลฟรีที่ดึงอัตโนมัติได้อย่างน่าเชื่อถือ)
 // ข้อมูลเป็นภาพรวม ณ วันที่ระบุ ไม่ใช่เรียลไทม์ และไม่ใช่คำแนะนำการลงทุน — ควรตรวจสอบราคาล่าสุดก่อนตัดสินใจเสมอ
-const SET_PRICE_SOURCE = "SET ผ่าน Investing.com";
+const SET_PRICE_SOURCE = "SET ผ่าน Yahoo Finance";
 const ANALYST_TARGET_SOURCE = "ฉันทามตินักวิเคราะห์ · Settrade IAA Consensus";
-const PRICE_AS_OF = "ราคาปิด 24 ก.ย. 2569";
+const PRICE_AS_OF = `ราคาปิด ${marketData.updatedAtLabel}`;
 const TARGET_AS_OF = "ปรับปรุงฉันทามติ 24 ก.ย. 2569";
 
 export const marketSnapshot: MarketSnapshot = {
@@ -40,7 +44,7 @@ export const marketDirectionParagraphs: string[] = [
   "ปัจจัยต่างประเทศที่ต้องติดตามคือทิศทางดอกเบี้ยสหรัฐฯ และราคาน้ำมันดิบ ซึ่งอาจส่งผลต่อกลุ่มพลังงานและกลุ่มนำเข้า-ส่งออกในสัปดาห์หน้า",
 ];
 
-export const watchStocks: WatchStock[] = [
+const watchStocksBase: WatchStock[] = [
   {
     ticker: "PTT",
     name: "ปตท.",
@@ -211,14 +215,22 @@ export const watchStocks: WatchStock[] = [
   },
 ];
 
-// ราคาอ้างอิงราคาซื้อขายบน SET ผ่าน Investing.com, Dividend Yield/รอบจ่าย/XD อ้างอิง
-// StockAnalysis.com (ข้อมูลจาก S&P Global Market Intelligence) — ดูหมายเหตุแหล่งที่มาในหน้าเว็บ
-// หมายเหตุ: INTUCH เพิกถอนออกจากตลาดแล้ว (รวมกิจการกับ GULF เม.ย. 2568) จึงตัดออกจากรายการนี้
-export const DIVIDEND_PRICE_SOURCE = "SET ผ่าน Investing.com";
-export const DIVIDEND_YIELD_SOURCE = "StockAnalysis.com (ข้อมูลจาก S&P Global Market Intelligence)";
-export const DIVIDEND_AS_OF = "ราคาปิด ~24 ก.ย. 2569 · Dividend Yield แบบ TTM";
+// ผสานราคาสดจาก marketData.json (รีเฟรชโดย scripts/refresh-market-data.mjs) เข้ากับ
+// ข้อมูลเชิงบรรณาธิการด้านบน — ฟิลด์อื่น (เป้าหมาย/ข่าว/แหล่งข่าว) ไม่ถูกแตะต้องโดยสคริปต์
+export const watchStocks: WatchStock[] = watchStocksBase.map((stock) => {
+  const live = (marketData.stocks as Record<string, { price: number } | undefined>)[stock.ticker];
+  return live ? { ...stock, price: live.price, priceAsOfLabel: PRICE_AS_OF } : stock;
+});
 
-export const dividendStocks: DividendStock[] = [
+// ราคาอ้างอิงราคาซื้อขายบน SET ผ่าน Yahoo Finance (รีเฟรชอัตโนมัติ), Dividend Yield/
+// รอบจ่าย/XD อ้างอิง StockAnalysis.com (ข้อมูลจาก S&P Global Market Intelligence,
+// อัปเดตด้วยมือเป็นระยะ) — ดูหมายเหตุแหล่งที่มาในหน้าเว็บ
+// หมายเหตุ: INTUCH เพิกถอนออกจากตลาดแล้ว (รวมกิจการกับ GULF เม.ย. 2568) จึงตัดออกจากรายการนี้
+export const DIVIDEND_PRICE_SOURCE = "SET ผ่าน Yahoo Finance";
+export const DIVIDEND_YIELD_SOURCE = "StockAnalysis.com (ข้อมูลจาก S&P Global Market Intelligence)";
+export const DIVIDEND_AS_OF = `ราคาปิด ${dividendData.updatedAtLabel} · Dividend Yield แบบ TTM`;
+
+const dividendStocksBase: DividendStock[] = [
   { ticker: "KTB", name: "ธนาคารกรุงไทย", sector: "ธนาคาร", price: 44.75, dividendYieldPct: 4.63, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 22 ก.ย. 2569" },
   { ticker: "LH", name: "แลนด์แอนด์เฮ้าส์", sector: "อสังหาริมทรัพย์", price: 3.6, dividendYieldPct: 6.91, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 29 เม.ย. 2569" },
   { ticker: "TISCO", name: "ทิสโก้ไฟแนนเชียลกรุ๊ป", sector: "ธนาคาร", price: 127.5, dividendYieldPct: 6.08, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 7 ก.ย. 2569" },
@@ -227,6 +239,11 @@ export const dividendStocks: DividendStock[] = [
   { ticker: "SPALI", name: "ศุภาลัย", sector: "อสังหาริมทรัพย์", price: 16.0, dividendYieldPct: 7.81, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 25 ส.ค. 2569" },
   { ticker: "TVO", name: "น้ำมันพืชไทย", sector: "เกษตร/อาหาร", price: 29.0, dividendYieldPct: 6.79, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 27 ส.ค. 2569" },
 ];
+
+export const dividendStocks: DividendStock[] = dividendStocksBase.map((stock) => {
+  const live = (dividendData.stocks as Record<string, { price: number } | undefined>)[stock.ticker];
+  return live ? { ...stock, price: live.price } : stock;
+});
 
 function watchStockToDetail(stock: WatchStock, sector: string, about: string): StockDetail {
   return {
@@ -273,7 +290,7 @@ export const liveCheckLinks = [
 
 export const dataSources = [
   { name: "ตลาดหลักทรัพย์แห่งประเทศไทย (SET)", href: "https://www.set.or.th" },
-  { name: "Investing.com (ราคาซื้อขายบน SET)", href: "https://www.investing.com" },
+  { name: "Yahoo Finance (ราคาซื้อขายบน SET, รีเฟรชอัตโนมัติ)", href: "https://finance.yahoo.com" },
   { name: "Settrade IAA Consensus (ราคาเป้าหมายเฉลี่ยนักวิเคราะห์)", href: "https://www.settrade.com" },
   { name: "StockAnalysis.com (Dividend Yield/รอบจ่าย/XD)", href: "https://stockanalysis.com" },
   { name: "TradingView", href: "https://www.tradingview.com" },

@@ -1,0 +1,54 @@
+name: Refresh stock prices
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every Monday 00:00 UTC = 07:00 Bangkok time, before the market opens.
+    - cron: "0 0 * * 1"
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Fetch latest SET prices from Yahoo Finance
+        run: node scripts/refresh-market-data.mjs
+
+      - name: Verify the site still builds with the new data
+        run: |
+          npm run build
+          npm run lint
+
+      - name: Commit and push if prices changed
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- src/lib/marketData.json src/lib/dividendData.json; then
+            echo "No price changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git add src/lib/marketData.json src/lib/dividendData.json
+          MSG=$(printf 'Refresh SET stock prices via Yahoo Finance\n\nAutomated weekly/on-demand price refresh (scripts/refresh-market-data.mjs).\nAnalyst target prices, dividend yields, and news notes are unaffected -\nthose are curated by hand, not by this workflow.')
+          git commit -m "$MSG"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger the GitHub Pages deploy
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref master

@@ -1,0 +1,41 @@
+{
+  "updatedAtLabel": "24 ก.ย. 2569",
+  "stocks": {
+    "PTT": {
+      "price": 43.25
+    },
+    "PTTEP": {
+      "price": 150.5
+    },
+    "KBANK": {
+      "price": 251
+    },
+    "SCB": {
+      "price": 156
+    },
+    "CPALL": {
+      "price": 44.25
+    },
+    "HMPRO": {
+      "price": 6.2
+    },
+    "ADVANC": {
+      "price": 345
+    },
+    "DELTA": {
+      "price": 255
+    },
+    "SCC": {
+      "price": 267
+    },
+    "AP": {
+      "price": 7.9
+    },
+    "BDMS": {
+      "price": 20
+    },
+    "BH": {
+      "price": 196
+    }
+  }
+}

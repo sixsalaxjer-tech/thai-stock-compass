@@ -1,6 +1,14 @@
 const CACHE_NAME = "thai-stock-compass-v1";
-const OFFLINE_URL = "/offline";
-const PRECACHE_URLS = ["/", "/disclaimer", "/offline", "/manifest.json"];
+// Derive the deployed base path (e.g. "/thai-stock-compass") from this
+// script's own URL, since public/sw.js can't use build-time env vars.
+const BASE_PATH = self.location.pathname.replace(/\/sw\.js$/, "");
+const OFFLINE_URL = `${BASE_PATH}/offline/`;
+const PRECACHE_URLS = [
+  `${BASE_PATH}/`,
+  `${BASE_PATH}/disclaimer/`,
+  `${BASE_PATH}/offline/`,
+  `${BASE_PATH}/manifest.json`,
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

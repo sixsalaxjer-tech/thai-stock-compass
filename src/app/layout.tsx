@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { SourceFooter } from "@/components/SourceFooter";
 import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
+import { basePath } from "@/lib/basePath";
 
 const taviraj = Taviraj({
   variable: "--font-taviraj",
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   },
   description:
     "ภาพรวมตลาดหุ้นไทย (SET Index), หุ้นน่าจับตาจากมุมมองนักวิเคราะห์/สื่อการเงิน และหุ้นปันผลเด่น พร้อมกลไกเช็คราคาล่าสุด — ไม่ใช่คำแนะนำการลงทุน",
-  manifest: "/manifest.json",
+  manifest: `${basePath}/manifest.json`,
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
@@ -34,10 +35,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: `${basePath}/icons/icon-192.png`, sizes: "192x192", type: "image/png" },
+      { url: `${basePath}/icons/icon-512.png`, sizes: "512x512", type: "image/png" },
     ],
-    apple: [{ url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" }],
+    apple: [{ url: `${basePath}/icons/icon-192.png`, sizes: "192x192", type: "image/png" }],
   },
 };
 

@@ -35,15 +35,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-b border-line py-8" aria-label="หุ้นที่นักวิเคราะห์จับตา">
+      <section className="border-b border-line py-8" aria-label="หุ้นแนะนำแยกตามกลุ่ม">
         <div className="flex items-baseline justify-between">
-          <h2 className="text-base font-medium">หุ้นที่นักวิเคราะห์จับตา</h2>
+          <h2 className="text-base font-medium">หุ้นแนะนำแยกตามกลุ่ม</h2>
           <Link href="/watchlist" className="text-sm text-gold hover:underline">
-            ดูทั้งหมด →
+            ดูทั้งหมดตามกลุ่ม →
           </Link>
         </div>
         <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {watchStocks.map((stock) => (
+          {watchStocks.slice(0, 4).map((stock) => (
             <StockWatchCard key={stock.ticker} stock={stock} />
           ))}
         </div>

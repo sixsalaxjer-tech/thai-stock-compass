@@ -16,8 +16,13 @@ export type SparklinePoint = {
 export type WatchStock = {
   ticker: string;
   name: string;
+  sector: string;
   price: number;
-  changePct: number;
+  priceAsOfLabel: string;
+  priceSource: string;
+  targetPrice: number;
+  targetSource: string;
+  targetAsOfLabel: string;
   note: string;
   source: string;
   publishedAtLabel: string;
@@ -39,10 +44,10 @@ export type StockDetail = {
   name: string;
   sector: string;
   price: number;
-  changeAbs: number;
-  changePct: number;
-  peRatio: number;
-  dividendYieldPct: number;
   asOfLabel: string;
+  priceSource: string;
+  targetPrice: number;
+  targetSource: string;
+  targetAsOfLabel: string;
   about: string;
 };

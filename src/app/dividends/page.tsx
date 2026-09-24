@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import { DividendTable } from "@/components/DividendTable";
 import { CautionCallout } from "@/components/CautionCallout";
 import { DataFreshnessBadge } from "@/components/DataFreshnessBadge";
-import { dividendStocks, marketSnapshot } from "@/lib/data";
+import {
+  DIVIDEND_AS_OF,
+  DIVIDEND_PRICE_SOURCE,
+  DIVIDEND_YIELD_SOURCE,
+  dividendStocks,
+} from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "หุ้นปันผล",
@@ -18,12 +23,16 @@ export default function DividendsPage() {
         ตัวเลข Dividend Yield คำนวณจากข้อมูลย้อนหลังและอาจเปลี่ยนแปลงได้
       </p>
       <div className="mt-4">
-        <DataFreshnessBadge label={marketSnapshot.asOfLabel} />
+        <DataFreshnessBadge label={DIVIDEND_AS_OF} />
       </div>
 
       <div className="mt-8">
         <DividendTable stocks={dividendStocks} />
       </div>
+
+      <p className="mt-3 text-xs text-text-muted">
+        ราคา: {DIVIDEND_PRICE_SOURCE} · Dividend Yield/รอบจ่าย/XD: {DIVIDEND_YIELD_SOURCE}
+      </p>
 
       <div className="mt-8">
         <CautionCallout>

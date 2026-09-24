@@ -211,15 +211,21 @@ export const watchStocks: WatchStock[] = [
   },
 ];
 
+// ราคาอ้างอิงราคาซื้อขายบน SET ผ่าน Investing.com, Dividend Yield/รอบจ่าย/XD อ้างอิง
+// StockAnalysis.com (ข้อมูลจาก S&P Global Market Intelligence) — ดูหมายเหตุแหล่งที่มาในหน้าเว็บ
+// หมายเหตุ: INTUCH เพิกถอนออกจากตลาดแล้ว (รวมกิจการกับ GULF เม.ย. 2568) จึงตัดออกจากรายการนี้
+export const DIVIDEND_PRICE_SOURCE = "SET ผ่าน Investing.com";
+export const DIVIDEND_YIELD_SOURCE = "StockAnalysis.com (ข้อมูลจาก S&P Global Market Intelligence)";
+export const DIVIDEND_AS_OF = "ราคาปิด ~24 ก.ย. 2569 · Dividend Yield แบบ TTM";
+
 export const dividendStocks: DividendStock[] = [
-  { ticker: "KTB", name: "ธนาคารกรุงไทย", sector: "ธนาคาร", price: 22.4, dividendYieldPct: 7.2, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 15 มี.ค. 2569" },
-  { ticker: "INTUCH", name: "อินทัช โฮลดิ้งส์", sector: "สื่อสาร", price: 92.5, dividendYieldPct: 6.4, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 10 มี.ค. 2569" },
-  { ticker: "LH", name: "แลนด์แอนด์เฮ้าส์", sector: "อสังหาริมทรัพย์", price: 6.55, dividendYieldPct: 6.1, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 28 ก.พ. 2569" },
-  { ticker: "TISCO", name: "ทิสโก้ไฟแนนเชียลกรุ๊ป", sector: "ธนาคาร", price: 99.0, dividendYieldPct: 8.0, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 5 มี.ค. 2569" },
-  { ticker: "AP", name: "เอพี (ไทยแลนด์)", sector: "อสังหาริมทรัพย์", price: 7.9, dividendYieldPct: 7.9, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 20 มี.ค. 2569" },
-  { ticker: "SCC", name: "ปูนซิเมนต์ไทย", sector: "วัสดุก่อสร้าง", price: 168.0, dividendYieldPct: 5.4, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 12 มี.ค. 2569" },
-  { ticker: "SPALI", name: "ศุภาลัย", sector: "อสังหาริมทรัพย์", price: 15.9, dividendYieldPct: 12.8, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 8 มี.ค. 2569", highYieldCaution: true },
-  { ticker: "TVO", name: "น้ำมันพืชไทย", sector: "เกษตร/อาหาร", price: 22.1, dividendYieldPct: 11.9, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 2 มี.ค. 2569", highYieldCaution: true },
+  { ticker: "KTB", name: "ธนาคารกรุงไทย", sector: "ธนาคาร", price: 44.75, dividendYieldPct: 4.63, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 22 ก.ย. 2569" },
+  { ticker: "LH", name: "แลนด์แอนด์เฮ้าส์", sector: "อสังหาริมทรัพย์", price: 3.6, dividendYieldPct: 6.91, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 29 เม.ย. 2569" },
+  { ticker: "TISCO", name: "ทิสโก้ไฟแนนเชียลกรุ๊ป", sector: "ธนาคาร", price: 127.5, dividendYieldPct: 6.08, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 7 ก.ย. 2569" },
+  { ticker: "AP", name: "เอพี (ไทยแลนด์)", sector: "อสังหาริมทรัพย์", price: 7.9, dividendYieldPct: 6.58, payoutFreq: "ปีละ 1 ครั้ง", lastXdLabel: "XD ล่าสุด 6 พ.ค. 2569" },
+  { ticker: "SCC", name: "ปูนซิเมนต์ไทย", sector: "วัสดุก่อสร้าง", price: 267.0, dividendYieldPct: 2.62, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 5 ส.ค. 2569" },
+  { ticker: "SPALI", name: "ศุภาลัย", sector: "อสังหาริมทรัพย์", price: 16.0, dividendYieldPct: 7.81, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 25 ส.ค. 2569" },
+  { ticker: "TVO", name: "น้ำมันพืชไทย", sector: "เกษตร/อาหาร", price: 29.0, dividendYieldPct: 6.79, payoutFreq: "ปีละ 2 ครั้ง", lastXdLabel: "XD ล่าสุด 27 ส.ค. 2569" },
 ];
 
 function watchStockToDetail(stock: WatchStock, sector: string, about: string): StockDetail {
@@ -269,6 +275,7 @@ export const dataSources = [
   { name: "ตลาดหลักทรัพย์แห่งประเทศไทย (SET)", href: "https://www.set.or.th" },
   { name: "Investing.com (ราคาซื้อขายบน SET)", href: "https://www.investing.com" },
   { name: "Settrade IAA Consensus (ราคาเป้าหมายเฉลี่ยนักวิเคราะห์)", href: "https://www.settrade.com" },
+  { name: "StockAnalysis.com (Dividend Yield/รอบจ่าย/XD)", href: "https://stockanalysis.com" },
   { name: "TradingView", href: "https://www.tradingview.com" },
-  { name: "หุ้นปันผลและดัชนี SET ภาพรวม: ข้อมูลตัวอย่างที่คิวเรตโดยทีมบรรณาธิการเว็บไซต์ (สำหรับสาธิต MVP)", href: undefined },
+  { name: "ดัชนี SET ภาพรวมและสรุปข่าวหน้าแรก: ข้อมูลตัวอย่างที่คิวเรตโดยทีมบรรณาธิการเว็บไซต์ (สำหรับสาธิต MVP)", href: undefined },
 ];

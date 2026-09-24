@@ -92,7 +92,7 @@ export default async function StockDetailPage({
       <section className="mt-8" aria-label={`กราฟราคาหุ้น ${stock.ticker}`}>
         <h2 className="text-base font-medium">กราฟราคา</h2>
         <div className="mt-4">
-          <TradingViewWidget symbol={stock.ticker} />
+          <TradingViewWidget symbol={`SET:${stock.ticker}`} label={`หุ้น ${stock.ticker}`} />
         </div>
       </section>
 

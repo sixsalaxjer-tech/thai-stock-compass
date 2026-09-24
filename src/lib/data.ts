@@ -1,5 +1,6 @@
 import type {
   DividendStock,
+  GoldAnalysis,
   MarketSnapshot,
   SparklinePoint,
   StockDetail,
@@ -7,6 +8,13 @@ import type {
 } from "./types";
 import marketData from "./marketData.json";
 import dividendData from "./dividendData.json";
+import goldData from "./goldData.json";
+
+// ราคาทองคำและ indicator ทั้งหมดคำนวณจากราคาย้อนหลังจริงของ GC=F (COMEX Gold
+// Futures) ผ่าน Yahoo Finance โดย scripts/refresh-gold-data.mjs — เป็นสูตรคำนวณ
+// ปกติ (SMA/EMA/RSI/MACD/Bollinger/Stochastic/ATR/Fibonacci/Pivot) ไม่ใช่ AI
+// คาดเดา แต่จุดซื้อ/ขายที่ได้เป็นเพียงระดับทางเทคนิค ไม่ใช่การรับประกันราคา
+export const goldAnalysis: GoldAnalysis = goldData as GoldAnalysis;
 
 // ราคาปัจจุบันของหุ้นแต่ละตัวอ้างอิงราคาซื้อขายบน SET (ตลาดหลักทรัพย์แห่งประเทศไทย)
 // ผ่าน Yahoo Finance (set.or.th ปิดกั้นการดึงข้อมูลอัตโนมัติ) — ราคาถูกรีเฟรชอัตโนมัติ
@@ -293,6 +301,7 @@ export const dataSources = [
   { name: "Yahoo Finance (ราคาซื้อขายบน SET, รีเฟรชอัตโนมัติ)", href: "https://finance.yahoo.com" },
   { name: "Settrade IAA Consensus (ราคาเป้าหมายเฉลี่ยนักวิเคราะห์)", href: "https://www.settrade.com" },
   { name: "StockAnalysis.com (Dividend Yield/รอบจ่าย/XD)", href: "https://stockanalysis.com" },
+  { name: "COMEX Gold Futures (GC=F) ผ่าน Yahoo Finance — ราคาทองคำและ indicator", href: "https://finance.yahoo.com/quote/GC=F/" },
   { name: "TradingView", href: "https://www.tradingview.com" },
   { name: "ดัชนี SET ภาพรวมและสรุปข่าวหน้าแรก: ข้อมูลตัวอย่างที่คิวเรตโดยทีมบรรณาธิการเว็บไซต์ (สำหรับสาธิต MVP)", href: undefined },
 ];

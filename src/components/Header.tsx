@@ -5,6 +5,7 @@ const NAV = [
   { href: "/", label: "หน้าแรก" },
   { href: "/dividends", label: "หุ้นปันผล" },
   { href: "/watchlist", label: "หุ้นน่าจับตา" },
+  { href: "/gold", label: "ทองคำ" },
   { href: "/about", label: "เกี่ยวกับเว็บ" },
 ];
 

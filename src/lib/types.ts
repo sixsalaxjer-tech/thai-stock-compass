@@ -51,3 +51,30 @@ export type StockDetail = {
   targetAsOfLabel: string;
   about: string;
 };
+
+export type GoldIndicatorSignal = "bullish" | "bearish" | "neutral";
+
+export type GoldIndicator = {
+  key: string;
+  name: string;
+  value: string;
+  signal: GoldIndicatorSignal;
+  signalLabel: string;
+  description: string;
+};
+
+export type GoldZone = {
+  price: number;
+  rationale: string;
+};
+
+export type GoldAnalysis = {
+  price: number;
+  priceAsOfLabel: string;
+  priceSource: string;
+  trend: "uptrend" | "downtrend" | "neutral";
+  trendLabel: string;
+  buyZone: GoldZone;
+  sellZone: GoldZone;
+  indicators: GoldIndicator[];
+};

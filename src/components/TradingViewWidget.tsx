@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export function TradingViewWidget({ symbol }: { symbol: string }) {
+export function TradingViewWidget({ symbol, label }: { symbol: string; label?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export function TradingViewWidget({ symbol }: { symbol: string }) {
     script.type = "text/javascript";
     script.async = true;
     script.innerHTML = JSON.stringify({
-      symbols: [[`SET:${symbol}`]],
+      symbols: [[symbol]],
       chartOnly: false,
       width: "100%",
       height: "400",
@@ -41,7 +41,7 @@ export function TradingViewWidget({ symbol }: { symbol: string }) {
     <div
       ref={containerRef}
       className="tradingview-widget-container border border-line"
-      aria-label={`กราฟราคาหุ้น ${symbol} จาก TradingView`}
+      aria-label={`กราฟราคา ${label ?? symbol} จาก TradingView`}
     />
   );
 }

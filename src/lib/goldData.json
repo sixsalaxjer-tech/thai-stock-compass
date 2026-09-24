@@ -1,0 +1,89 @@
+{
+  "priceAsOfLabel": "ราคาปิด 24 ก.ย. 2569",
+  "price": 4300.8,
+  "priceSource": "COMEX Gold Futures (GC=F) ผ่าน Yahoo Finance",
+  "trend": "downtrend",
+  "trendLabel": "แนวโน้มขาลง",
+  "buyZone": {
+    "price": 4283.566731770834,
+    "rationale": "แนวรับที่ใกล้ราคาปัจจุบันที่สุดจากทุก indicator ด้านล่าง คือ Pivot S1 (4,283.57)"
+  },
+  "sellZone": {
+    "price": 4355.199951171875,
+    "rationale": "แนวต้านที่ใกล้ราคาปัจจุบันที่สุดจากทุก indicator ด้านล่าง คือ Fibonacci 50% (4,355.20)"
+  },
+  "indicators": [
+    {
+      "key": "movingAverage",
+      "name": "SMA 50 / SMA 200",
+      "value": "SMA50 4,348.02 · SMA200 4,555.55",
+      "signal": "bearish",
+      "signalLabel": "Death Cross โซนขาลง",
+      "description": "เปรียบเทียบเส้นค่าเฉลี่ยเคลื่อนที่ระยะสั้น (50 วัน) กับระยะยาว (200 วัน) เพื่อดูทิศทางแนวโน้มหลัก"
+    },
+    {
+      "key": "ema20",
+      "name": "EMA 20",
+      "value": "4,400.34",
+      "signal": "bearish",
+      "signalLabel": "ราคาอยู่ใต้ EMA 20",
+      "description": "ค่าเฉลี่ยเคลื่อนที่แบบถ่วงน้ำหนัก 20 วัน ใช้ดูแนวโน้มระยะสั้น"
+    },
+    {
+      "key": "rsi",
+      "name": "RSI (14)",
+      "value": "40.5",
+      "signal": "neutral",
+      "signalLabel": "เป็นกลาง",
+      "description": "ดัชนีความแข็งแกร่งสัมพัทธ์ วัดภาวะซื้อ/ขายมากเกินไปในรอบ 14 วัน"
+    },
+    {
+      "key": "macd",
+      "name": "MACD (12,26,9)",
+      "value": "MACD -20.39 · Signal 0.33 · Hist -20.72",
+      "signal": "bearish",
+      "signalLabel": "โมเมนตัมเป็นลบ",
+      "description": "วัดโมเมนตัมจากส่วนต่างเส้นค่าเฉลี่ยเคลื่อนที่แบบเอ็กซ์โพเนนเชียล 12 และ 26 วัน"
+    },
+    {
+      "key": "bollinger",
+      "name": "Bollinger Bands (20,2)",
+      "value": "บน 4,590.21 · กลาง 4,424.75 · ล่าง 4,259.30",
+      "signal": "neutral",
+      "signalLabel": "อยู่ในกรอบ",
+      "description": "กรอบเบี่ยงเบนมาตรฐาน 2 เท่ารอบค่าเฉลี่ย 20 วัน ใช้ดูความผันผวนและจุดกลับตัว"
+    },
+    {
+      "key": "stochastic",
+      "name": "Stochastic Oscillator (14,3)",
+      "value": "%K 10.4 · %D 20.8",
+      "signal": "bullish",
+      "signalLabel": "Oversold",
+      "description": "เปรียบเทียบราคาปิดล่าสุดกับช่วงราคาสูงสุด-ต่ำสุดในรอบ 14 วัน"
+    },
+    {
+      "key": "atr",
+      "name": "ATR (14)",
+      "value": "100.51 (~2.3% ของราคา)",
+      "signal": "neutral",
+      "signalLabel": "ข้อมูลความผันผวน ไม่ใช่สัญญาณซื้อขาย",
+      "description": "ช่วงเฉลี่ยที่ราคาแกว่งต่อวัน ใช้ประกอบการตั้งจุดตัดขาดทุน (stop-loss)"
+    },
+    {
+      "key": "fibonacci",
+      "name": "Fibonacci Retracement",
+      "value": "61.8% 4,449.55 · 50% 4,355.20 · 38.2% 4,260.85",
+      "signal": "neutral",
+      "signalLabel": "วัดแนวต้านจากการเด้งในขาลง",
+      "description": "ระดับแนวรับ/แนวต้านตามอัตราส่วนฟีโบนักชี จากจุดสูงสุด-ต่ำสุดในรอบ 90 วัน"
+    },
+    {
+      "key": "pivot",
+      "name": "Pivot Points (Classic)",
+      "value": "P 4,345.53 · R1 4,380.37 · S1 4,283.57",
+      "signal": "bearish",
+      "signalLabel": "ราคาอยู่ใต้จุดหมุน",
+      "description": "จุดหมุนคลาสสิกคำนวณจากราคาสูงสุด/ต่ำสุด/ปิดของวันก่อนหน้า"
+    }
+  ]
+}

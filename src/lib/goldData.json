@@ -1,22 +1,22 @@
 {
-  "priceAsOfLabel": "ราคาปิด 5 ต.ค. 2569",
-  "price": 4176.9,
+  "priceAsOfLabel": "ราคาปิด 12 ต.ค. 2569",
+  "price": 4217.1,
   "priceSource": "COMEX Gold Futures (GC=F) ผ่าน Yahoo Finance",
   "trend": "downtrend",
   "trendLabel": "แนวโน้มขาลง",
   "buyZone": {
-    "price": 4144.105525390625,
-    "rationale": "แนวรับที่ใกล้ราคาปัจจุบันที่สุดจากทุก indicator ด้านล่าง คือ Fibonacci 23.6% (4,144.11)"
+    "price": 4170.366536458334,
+    "rationale": "แนวรับที่ใกล้ราคาปัจจุบันที่สุดจากทุก indicator ด้านล่าง คือ Pivot S1 (4,170.37)"
   },
   "sellZone": {
-    "price": 4229.599934895834,
-    "rationale": "แนวต้านที่ใกล้ราคาปัจจุบันที่สุดจากทุก indicator ด้านล่าง คือ Pivot R1 (4,229.60)"
+    "price": 4247.966634114584,
+    "rationale": "แนวต้านที่ใกล้ราคาปัจจุบันที่สุดจากทุก indicator ด้านล่าง คือ Pivot R1 (4,247.97)"
   },
   "indicators": [
     {
       "key": "movingAverage",
       "name": "SMA 50 / SMA 200",
-      "value": "SMA50 4,368.39 · SMA200 4,552.59",
+      "value": "SMA50 4,379.17 · SMA200 4,546.58",
       "signal": "bearish",
       "signalLabel": "Death Cross โซนขาลง",
       "description": "เปรียบเทียบเส้นค่าเฉลี่ยเคลื่อนที่ระยะสั้น (50 วัน) กับระยะยาว (200 วัน) เพื่อดูทิศทางแนวโน้มหลัก"
@@ -24,7 +24,7 @@
     {
       "key": "ema20",
       "name": "EMA 20",
-      "value": "4,296.30",
+      "value": "4,251.90",
       "signal": "bearish",
       "signalLabel": "ราคาอยู่ใต้ EMA 20",
       "description": "ค่าเฉลี่ยเคลื่อนที่แบบถ่วงน้ำหนัก 20 วัน ใช้ดูแนวโน้มระยะสั้น"
@@ -32,7 +32,7 @@
     {
       "key": "rsi",
       "name": "RSI (14)",
-      "value": "35.9",
+      "value": "43.6",
       "signal": "neutral",
       "signalLabel": "เป็นกลาง",
       "description": "ดัชนีความแข็งแกร่งสัมพัทธ์ วัดภาวะซื้อ/ขายมากเกินไปในรอบ 14 วัน"
@@ -40,7 +40,7 @@
     {
       "key": "macd",
       "name": "MACD (12,26,9)",
-      "value": "MACD -65.66 · Signal -44.03 · Hist -21.63",
+      "value": "MACD -59.30 · Signal -58.28 · Hist -1.02",
       "signal": "bearish",
       "signalLabel": "โมเมนตัมเป็นลบ",
       "description": "วัดโมเมนตัมจากส่วนต่างเส้นค่าเฉลี่ยเคลื่อนที่แบบเอ็กซ์โพเนนเชียล 12 และ 26 วัน"
@@ -48,7 +48,7 @@
     {
       "key": "bollinger",
       "name": "Bollinger Bands (20,2)",
-      "value": "บน 4,519.32 · กลาง 4,319.34 · ล่าง 4,119.37",
+      "value": "บน 4,452.38 · กลาง 4,260.86 · ล่าง 4,069.34",
       "signal": "neutral",
       "signalLabel": "อยู่ในกรอบ",
       "description": "กรอบเบี่ยงเบนมาตรฐาน 2 เท่ารอบค่าเฉลี่ย 20 วัน ใช้ดูความผันผวนและจุดกลับตัว"
@@ -56,15 +56,15 @@
     {
       "key": "stochastic",
       "name": "Stochastic Oscillator (14,3)",
-      "value": "%K 11.4 · %D 12.6",
-      "signal": "bullish",
-      "signalLabel": "Oversold",
+      "value": "%K 39.8 · %D 32.8",
+      "signal": "neutral",
+      "signalLabel": "เป็นกลาง",
       "description": "เปรียบเทียบราคาปิดล่าสุดกับช่วงราคาสูงสุด-ต่ำสุดในรอบ 14 วัน"
     },
     {
       "key": "atr",
       "name": "ATR (14)",
-      "value": "91.30 (~2.2% ของราคา)",
+      "value": "84.95 (~2.0% ของราคา)",
       "signal": "neutral",
       "signalLabel": "ข้อมูลความผันผวน ไม่ใช่สัญญาณซื้อขาย",
       "description": "ช่วงเฉลี่ยที่ราคาแกว่งต่อวัน ใช้ประกอบการตั้งจุดตัดขาดทุน (stop-loss)"
@@ -80,9 +80,9 @@
     {
       "key": "pivot",
       "name": "Pivot Points (Classic)",
-      "value": "P 4,191.70 · R1 4,229.60 · S1 4,124.40",
-      "signal": "bearish",
-      "signalLabel": "ราคาอยู่ใต้จุดหมุน",
+      "value": "P 4,202.03 · R1 4,247.97 · S1 4,170.37",
+      "signal": "bullish",
+      "signalLabel": "ราคาอยู่เหนือจุดหมุน",
       "description": "จุดหมุนคลาสสิกคำนวณจากราคาสูงสุด/ต่ำสุด/ปิดของวันก่อนหน้า"
     }
   ]

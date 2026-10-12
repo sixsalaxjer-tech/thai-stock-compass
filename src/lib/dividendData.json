@@ -1,23 +1,23 @@
 {
-  "updatedAtLabel": "5 ต.ค. 2569",
+  "updatedAtLabel": "12 ต.ค. 2569",
   "stocks": {
     "SCC": {
-      "price": 244
+      "price": 266
     },
     "AP": {
-      "price": 7.8
+      "price": 7.95
     },
     "KTB": {
       "price": 41.75
     },
     "LH": {
-      "price": 3.44
+      "price": 3.5
     },
     "TISCO": {
-      "price": 125
+      "price": 124
     },
     "SPALI": {
-      "price": 15.9
+      "price": 15.6
     },
     "TVO": {
       "price": 28.25
